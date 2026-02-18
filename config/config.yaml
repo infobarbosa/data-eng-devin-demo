@@ -1,0 +1,23 @@
+spark:
+  app_name: "TopClientesPipeline"
+  master: "local[*]"
+
+catalog:
+  clientes_bronze:
+    format: "json"
+    path: "data/input/dataset-json-clientes/data/clientes.json.gz"
+    options:
+      multiLine: "false"
+  pedidos_bronze:
+    format: "csv"
+    path: "data/input/datasets-csv-pedidos/data/pedidos"
+    options:
+      header: "true"
+      sep: ";"
+      inferSchema: "true"
+
+output:
+  top_10_clientes:
+    format: "parquet"
+    path: "data/output/top_10_clientes"
+    mode: "overwrite"
